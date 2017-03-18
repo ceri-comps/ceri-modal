@@ -3,7 +3,7 @@
 the best modal you can get.
 
 Features:
-- plain JS
+- plain JS - no dependencies
 - 25kB unzipped with animations - even smaller when using multiple ceri components
 - themeable
 - use in your markup - easy to reason about
