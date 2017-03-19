@@ -16,6 +16,10 @@
   "engines": {
     "node": "*"
   },
+  "files": [
+    "*.js",
+    "*.scss"
+  ],
   "dependencies": {
     "ceri": "^1.0.1"
   },
