@@ -15,19 +15,19 @@ module.exports = ceri
       default: 0.5
     keepOpen:
       type: Boolean
-    attach:
-      type: Boolean
     zIndex:
       type: Number
       default: 1500
     bottomSheet:
       type: Boolean
+    attach:
+      type: String
   
 
   events:
     click:
       target:
-        active: -> @attach and !@openingOrOpen
+        active: -> @target and !@openingOrOpen
         notPrevented: true
         prevent: true
         cbs: "show"
@@ -35,10 +35,14 @@ module.exports = ceri
 
   computed:
     target: ->
-      if @__placeholder.previousElementSibling
-        return @__placeholder.previousElementSibling
-      else
-        return @__parentElement
+      if @attach
+        return document.querySelector(@attach)
+      else if @attach?
+        if @__placeholder.previousElementSibling
+          return @__placeholder.previousElementSibling
+        else
+          return @__parentElement
+      return null
   data: ->
     onBody: true
   overlay:

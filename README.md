@@ -44,7 +44,7 @@ Note, that the modal will be appended to `document.body` on first opening.
 #### Props
 Name | type | default | description
 ---:| --- | ---| ---
-attach | Boolean | false | will set a click listener on sibling or parent to toggle the modal
+attach | String | null | will set a click listener to toggle the modal on resolved Element by `querySelector`. if string is empty it will use sibling or parent
 opacity | Number | 0.5 | opacity of the overlay
 keep-open | Boolean | false | will be not close on click on overlay or ESC
 open | Boolean | false | set to open / close
