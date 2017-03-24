@@ -4,12 +4,8 @@ module.exports = ceri
 
   mixins: [
     require "ceri/lib/props"
-    require "ceri/lib/computed"
     require "ceri/lib/style"
-    require "ceri/lib/events"
-    require "ceri/lib/animate"
     require "ceri/lib/open"
-    require "ceri/lib/@popstate"
     require "ceri/lib/overlay"
   ]
 
@@ -29,10 +25,6 @@ module.exports = ceri
   
 
   events:
-    popstate:
-      active: "openingOrOpen"
-      cbs: -> @hide(false)
-
     click:
       target:
         active: -> @attach and !@openingOrOpen

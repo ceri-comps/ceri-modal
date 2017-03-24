@@ -8,8 +8,6 @@
 // BEGIN: only specific colors
 @import "~ceri-materialize/color";
 // include colors you need
-@include do("include-color","black", "base");
-@include do("include-color","white", "base");
 @import "~ceri-materialize/colorProcessor";
 // END: only specific colors
 
