@@ -21,11 +21,11 @@
     "*.scss"
   ],
   "dependencies": {
-    "ceri": "^1.0.18"
+    "ceri": "^1.0.20"
   },
   "devDependencies": {
-    "ceri-compiler": "^1.1.0",
-    "ceri-dev-server": "^1.0.6",
+    "ceri-compiler": "^1.1.1",
+    "ceri-dev-server": "^1.0.7",
     "ceri-materialize": "^1.0.1",
     "coffee-loader": "^0.7.3",
     "coffee-script": "^1.12.6",
