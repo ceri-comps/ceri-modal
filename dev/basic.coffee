@@ -40,7 +40,7 @@ module.exports = createView
     """
   data: ->
     open: false
-  tests: (env) ->
+  tests: ceriModal: ->
     mouseClick = ->
       evt = document.createEvent("MouseEvents")
       evt.initMouseEvent(
@@ -61,34 +61,29 @@ module.exports = createView
         null
         )
       return evt
-
-    describe "modal", ->
-
-      describe "basic env", ->
-
-        it "should work", (done) ->
-          env.modal.open = true
-          env.modal.animation.toEnd()
-          requestAnimationFrame -> requestAnimationFrame ->
-            len = document.body.children.length
-            document.body.children[len-2].should.have.attr("style").match /z-index: 1501/
-            document.body.children[len-1].should.have.attr("style").match /z-index: 1500/
-            env.keepOpen.open = true
-            env.keepOpen.animation.toEnd()
-            requestAnimationFrame -> requestAnimationFrame ->
+    it "should work", (done) =>
+      @modal.open = true
+      @modal.animation.toEnd()
+      requestAnimationFrame => requestAnimationFrame =>
+        len = document.body.children.length
+        document.body.children[len-2].should.have.attr("style").match /z-index: 1501/
+        document.body.children[len-1].should.have.attr("style").match /z-index: 1500/
+        @keepOpen.open = true
+        @keepOpen.animation.toEnd()
+        requestAnimationFrame => requestAnimationFrame =>
+          len = document.body.children.length
+          document.body.children[len-1].should.have.attr("style").match /z-index: 1506/
+          document.body.children[len-2].should.have.attr("style").match /z-index: 1505/
+          document.dispatchEvent(mouseClick())
+          @$nextTick => @$nextTick =>
+            @keepOpen.open.should.be.true
+            @keepOpen.open = false
+            @keepOpen.animation.toEnd()
+            requestAnimationFrame => requestAnimationFrame =>
               len = document.body.children.length
-              document.body.children[len-1].should.have.attr("style").match /z-index: 1506/
-              document.body.children[len-2].should.have.attr("style").match /z-index: 1505/
-              document.dispatchEvent(mouseClick())
-              env.$nextTick -> env.$nextTick ->
-                env.keepOpen.open.should.be.true
-                env.keepOpen.open = false
-                env.keepOpen.animation.toEnd()
-                requestAnimationFrame -> requestAnimationFrame ->
-                  len = document.body.children.length
-                  document.body.children[len-1].should.have.attr("style").match /z-index: 1500/
-                  document.body.children[len-1].dispatchEvent(mouseClick())
-                  env.modal.animation.toEnd()
-                  requestAnimationFrame -> requestAnimationFrame ->
-                    env.modal.open.should.be.false
-                    done()
+              document.body.children[len-1].should.have.attr("style").match /z-index: 1500/
+              document.body.children[len-1].dispatchEvent(mouseClick())
+              @modal.animation.toEnd()
+              requestAnimationFrame => requestAnimationFrame =>
+                @modal.open.should.be.false
+                done()
