@@ -1,8 +1,11 @@
-require("./materialize.config.scss")
-require "./basic.css"
+require("./materialize.config.styl")
+
 window.customElements.define "ceri-modal", require "../src/modal.coffee"
 createView = require "ceri-dev-server/lib/createView"
 module.exports = createView
+  mixins: [
+    require "ceri/lib/watch"
+  ]
   structure: template 1, """
 
     <button>click</button>
